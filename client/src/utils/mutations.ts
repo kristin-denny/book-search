@@ -19,14 +19,7 @@ export const ADD_USER = gql`
       password
       username
       email
-      savedBooks {
-            bookId
-            authors
-            description
-            title
-            image
-            link
-         }
+      savedBooks[]
     }
     token
   }
