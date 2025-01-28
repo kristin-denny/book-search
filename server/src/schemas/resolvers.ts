@@ -16,6 +16,7 @@ interface AddUserArgs {
         username: string;
         email: string;
         password: string;
+        savedBooks: any[];
     }
 }
 
