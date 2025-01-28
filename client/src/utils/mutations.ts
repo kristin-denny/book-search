@@ -16,8 +16,17 @@ export const ADD_USER = gql`
   mutation Mutation($input: UserInput!) {
   addUser(input: $input) {
     user {
+      password
       username
-   
+      email
+      savedBooks {
+            bookId
+            authors
+            description
+            title
+            image
+            link
+         }
     }
     token
   }
