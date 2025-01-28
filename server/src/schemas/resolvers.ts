@@ -16,7 +16,6 @@ interface AddUserArgs {
         username: string;
         email: string;
         password: string;
-        savedBooks: any[];
     }
 }
 
@@ -46,12 +45,14 @@ const resolvers = {
     Mutation: {
         addUser: async (_parent: any, { input }: AddUserArgs) => {
 
-            const user = await User.create({ ...input });
-
-            const token = signToken(user.username, user.email, user._id);
-
-
-            return { token, user };
+            try {
+                const user = await User.create({ ...input });
+                const token = signToken(user.username, user.email, user._id);
+                return { token, user };
+              } catch (err) {
+                console.error(err);
+                throw new Error('Failed to create user');
+              }
         },
         login: async (_parent: any, { email, password }: LoginArgs) => {
 
